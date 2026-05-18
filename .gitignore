@@ -44,3 +44,6 @@ build/
 .idea/
 *.swp
 *.swo
+
+# Workshop materials
+Workshop/
