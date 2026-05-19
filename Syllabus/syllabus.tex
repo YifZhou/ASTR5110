@@ -1,5 +1,4 @@
 \documentclass[11pt, letter]{article}
-%\usepackage{geometry}
 \usepackage[inner=1.5cm,outer=1.5cm,top=2.5cm,bottom=2.5cm]{geometry}
 \pagestyle{empty}
 \usepackage{graphicx}
@@ -13,106 +12,133 @@
 \renewcommand{\thefootnote}{\fnsymbol{footnote}}
 \pagestyle{fancyplain}
 \fancyhf{}
-\lhead{ \fancyplain{}{Course Name} }
-%\chead{ \fancyplain{}{} }
+\lhead{ \fancyplain{}{Astronomical Techniques} }
 \rhead{ \fancyplain{}{\today} }
-%\rfoot{\fancyplain{}{page \thepage\ of \pageref{LastPage}}}
 \fancyfoot[RO, LE] {page \thepage\ of \pageref{LastPage} }
 \thispagestyle{plain}
-%%%%%%%%%%%% LISTING %%%
+
 \usepackage{listings}
 \usepackage{caption}
 \DeclareCaptionFont{white}{\color{white}}
 \DeclareCaptionFormat{listing}{\colorbox{gray}{\parbox{\textwidth}{#1#2#3}}}
 \captionsetup[lstlisting]{format=listing,labelfont=white,textfont=white}
-\usepackage{verbatim} % used to display code
+\usepackage{verbatim}
 \usepackage{fancyvrb}
 \usepackage{acronym}
 \usepackage{amsthm}
-\VerbatimFootnotes % Required, otherwise verbatim does not work in footnotes!
+\VerbatimFootnotes
+
 \definecolor{OliveGreen}{cmyk}{0.64,0,0.95,0.40}
 \definecolor{CadetBlue}{cmyk}{0.62,0.57,0.23,0}
 \definecolor{lightlightgray}{gray}{0.93}
+
+% ---- heading helpers ----
+% Major section rule (e.g. "Course Goals", "Grading Policy")
+\newcommand{\sectionheading}[1]{%
+  \vskip.25in
+  \noindent\rule{\linewidth}{0.8pt}\\[2pt]
+  \noindent{\large\textbf{#1}}\\[-6pt]
+  \noindent\rule{\linewidth}{0.4pt}
+  \vskip.1in}
+
+% Goal sub-heading (numbered goal inside a section)
+\newcommand{\goalheading}[2]{%
+  \vskip.15in
+  \noindent\textbf{\color{darkred}Goal #1: #2}
+  \vskip.05in}
+
 \lstset{
-%language=bash,                          % Code langugage
-basicstyle=\ttfamily,                   % Code font, Examples: \footnotesize, \ttfamily
-keywordstyle=\color{OliveGreen},        % Keywords font ('*' = uppercase)
-commentstyle=\color{gray},              % Comments font
-numbers=left,                           % Line nums position
-numberstyle=\tiny,                      % Line-numbers fonts
-stepnumber=1,                           % Step between two line-numbers
-numbersep=5pt,                          % How far are line-numbers from code
-backgroundcolor=\color{lightlightgray}, % Choose background color
-frame=none,                             % A frame around the code
-tabsize=2,                              % Default tab size
-captionpos=t,                           % Caption-position = bottom
-breaklines=true,                        % Automatic line breaking?
-breakatwhitespace=false,                % Automatic breaks only at whitespace?
-showspaces=false,                       % Dont make spaces visible
-showtabs=false,                         % Dont make tabls visible
-columns=flexible,                       % Column format
-morekeywords={__global__, __device__},  % CUDA specific keywords
+basicstyle=\ttfamily,
+keywordstyle=\color{OliveGreen},
+commentstyle=\color{gray},
+numbers=left,
+numberstyle=\tiny,
+stepnumber=1,
+numbersep=5pt,
+backgroundcolor=\color{lightlightgray},
+frame=none,
+tabsize=2,
+captionpos=t,
+breaklines=true,
+breakatwhitespace=false,
+showspaces=false,
+showtabs=false,
+columns=flexible,
+morekeywords={__global__, __device__},
 }
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{document}
+
+% ============================================================
+%  Title block
+% ============================================================
 \begin{center}
-{\Large \textsc{Astronomical Techniques}}
+  {\Large \textsc{Astronomical Techniques}}\\[4pt]
+  {\large ASTR 5110 \quad|\quad Fall 2027}
 \end{center}
+
+\vskip.2in
+\noindent\rule{6in}{0.8pt}
 \begin{center}
-Fall 2027
-\end{center}
-%\date{September 26, 2014}
-\begin{center}
-\rule{6in}{0.4pt}
 \begin{minipage}[t]{.75\textwidth}
 \begin{tabular}{llcccll}
-\textbf{Instructor:} & Yifan Zhou & & &  & \textbf{Time:} &  \\
-\textbf{Email:} &  \href{mailto:yzhou@virginia.edu}{yzhou@virginia.edu} & & & & \textbf{Place:} & Astronomy Building\\
-\textbf{Office Hours:}  &&&&
+\textbf{Instructor:} & Yifan Zhou      & & & & \textbf{Time:}  & \\
+\textbf{Email:}      & \href{mailto:yzhou@virginia.edu}{yzhou@virginia.edu}
+                                        & & & & \textbf{Place:} & Astronomy Building \\
+\textbf{Office Hours:} & & & & & &
 \end{tabular}
 \end{minipage}
-\rule{6in}{0.4pt}
 \end{center}
-\vspace{.5cm}
-\setlength{\unitlength}{1in}
-\renewcommand{\arraystretch}{2}
-\noindent\textbf{Course description} 
-\vskip.15in
+\noindent\rule{6in}{0.8pt}
 
-\vskip.15in
-\noindent\textbf{Main References:} %\footnotemark
-This is a  restricted list of various interesting and useful books that will be touched during the course. You need to consult them occasionally.
+% ============================================================
+\sectionheading{Course Description}
+% ============================================================
+
+This is a course in practical observational astronomy for graduate students in the Astronomy Department. The course includes substantial observing sessions and lab-based work. 
+
+The course will consist of lectures, practical sessions, problem sets and observing projects (``labs'') with an emphasis on building practical observing experience. The main topics include understanding the night sky, designing observational experiments, planning and making observations, using and understanding typical modern astronomical instruments, reducing data, analyzing results, and reporting your results. The primary goal of the course is to train students in the basic working knowledge of the practical use of optical/near-infrared observing facilities, especially those that they may need for research on their thesis projects.
+
+While this training is directly useful to students intending to undertake observationally oriented research projects and careers, the gained knowledge is also essential for theorists. Theorists must develop a basic understanding of how data are collected, reduced and analyzed to have a proper appreciation for the meaning, methods, limitations, and statistical interpretation of empirical work used to constrain and test theory. These skills are also needed to operate our department's telescope facilities—a skill you will likely need as a teaching assistant or participant in department public nights and outreach activities.
+
+% [course description text here]
+
+% ============================================================
+\sectionheading{Course Goals and Learning Objectives}
+% ============================================================
+
+% ---- Goal 1 ------------------------------------------------
+\goalheading{1}{Master the Signals in Your Data}
+
+Cutting-edge astronomy demands not only knowing what your data say, but how reliably they say it.
+By the end of this course, you will be able to:
 \begin{itemize}
-\item
-\end{itemize} 
-% \footnotetext{Downloadable ebook versions are available on AeLP.}
-\vskip.15in
-\noindent\textbf{Course Goals and Learning Objectives:}
-
-\vskip.1in
-\noindent\textbf{Goal 1: Master the signals in your data}
-
-\noindent Cutting-edge astronomy demands  how reliably they say it. By the end of this course, you will be able to:
-\begin{itemize}
-  \item Describe the fundamentals of telescope optical design, photon collection at optical and infrared wavelengths, and detector physics.
-  \item Collect, reduce, and analyze astronomical datasets across three observing modes: imaging, spectroscopy, and interferometry.
+  \item Describe the fundamentals of telescope optical design, photon collection at optical and
+        infrared wavelengths, and detector physics.
+  \item Collect, reduce, and analyze astronomical datasets across three observing modes:
+        imaging, spectroscopy, and interferometry.
   \item Quantify signals and uncertainties through hands-on data analysis activities.
 \end{itemize}
 
-\vskip.1in
-\noindent\textbf{Goal 2: Formulate the questions}
+% ---- Goal 2 ------------------------------------------------
+\goalheading{2}{Formulate the Questions}
 
-\noindent Good science begins with a well-posed question. By the end of this course, you will be able to:
+Good science begins with a well-posed question.
+By the end of this course, you will be able to:
 \begin{itemize}
-  \item Connect current research questions in astronomy to the observational techniques used to address them.
+  \item Connect current research questions in astronomy to the observational techniques used
+        to address them.
   \item Select appropriate observing techniques for a given scientific question.
-  \item Identify gaps in existing observational data that limit progress on specific astronomical problems.
+  \item Identify gaps in existing observational data that limit progress on specific astronomical
+        problems.
 \end{itemize}
 
-\vskip.1in
-\noindent\textbf{Goal 3: Design the experiment}
+% ---- Goal 3 ------------------------------------------------
+\goalheading{3}{Design the Experiment}
 
-\noindent Translating a question into a feasible observing program is a core professional skill. By the end of this course, you will be able to:
+Translating a question into a feasible observing program is a core professional skill.
+By the end of this course, you will be able to:
 \begin{itemize}
   \item Construct testable hypotheses from scientific questions using astronomical methods.
   \item Select observing methods, identify appropriate targets, and design an experiment.
@@ -120,60 +146,91 @@ This is a  restricted list of various interesting and useful books that will be 
   \item Execute an observing program through hands-on laboratory work.
 \end{itemize}
 
-\vskip.1in
-\noindent\textbf{Goal 4: Compete for resources}
+% ---- Goal 4 ------------------------------------------------
+\goalheading{4}{Compete for Resources}
 
-\noindent Astronomical facilities are oversubscribed. Effective writing and presentation determine who gets access. By the end of this course, you will be able to:
+Astronomical facilities are oversubscribed.
+Effective writing and presentation determine who gets access.
+By the end of this course, you will be able to:
 \begin{itemize}
   \item Write telescope proposals and scientific papers following professional standards.
   \item Provide constructive written peer review of scientific proposals.
   \item Present an observing program orally to a scientific audience.
 \end{itemize}
 
-\vskip.1in
-\noindent\textbf{Goal 5: Apply these skills broadly}
+% ---- Goal 5 ------------------------------------------------
+\goalheading{5}{Apply These Skills Broadly}
 
-\noindent The quantitative reasoning and experimental design habits you develop here transfer well beyond astronomy. By the end of this course, you will be able to:
+The quantitative reasoning and experimental design habits you develop here transfer well beyond
+astronomy.
+By the end of this course, you will be able to:
 \begin{itemize}
-  \item Connect the hypothesis-testing and data analysis approaches from this course to problems in other scientific and technical domains.
+  \item Connect the hypothesis-testing and data analysis approaches from this course to
+        problems in other scientific and technical domains.
 \end{itemize}
 
-\vskip.15in
+% ============================================================
+\sectionheading{Main References}
+% ============================================================
 
-\vspace*{.15in}
-\noindent \textbf{Tentative Course Outline:}
-\begin{center} 
+This is a restricted list of books that will be touched during the course.
+You should consult them occasionally.
+
+\begin{itemize}
+  \item % reference 1
+\end{itemize}
+
+\sectionheading{Night labs}
+
+\sectionheading{Group work and projects}
+
+\sectionheading{Observatory field trip}
+
+% ============================================================
+\sectionheading{Tentative Course Outline}
+% ============================================================
+
+\begin{center}
 \begin{minipage}{5in}
 \begin{flushleft}
-%Chapter 1 \dotfill ~$\approx$ 3 days \\
-{\color{darkgreen}{\Rectangle}} ~A little of probability theory and graph theory	
+{\color{darkgreen}{\Rectangle}}~
 \end{flushleft}
 \end{minipage}
 \end{center}
-\vspace*{.15in}
-\noindent\textbf{Grading Policy:} Homework and quizzes (30\%),  Midterm 1 (20\%), Midterm 2 (20\%), Final (30\%). %Four Projects (40\% = 4 * 10\%)
-\vskip.15in
-\noindent\textbf{Important Dates:}
-\begin{center} \begin{minipage}{3.8in}
+
+% ============================================================
+\sectionheading{Grading Policy}
+% ============================================================
+
+\begin{center}
+\begin{tabular}{lc}
+\hline
+\textbf{Component}  & \textbf{Weight} \\
+\hline
+Homework \& Quizzes & 30\% \\
+Midterm 1           & 20\% \\
+Midterm 2           & 20\% \\
+Final Exam          & 30\% \\
+\hline
+\end{tabular}
+\end{center}
+
+% ============================================================
+\sectionheading{Important Dates}
+% ============================================================
+
+\begin{center}
+\begin{minipage}{3.8in}
 \begin{flushleft}
-Midterm \#1      \dotfill ~\={A}b\={a}n 16, 1393  \\
-Midterm \#2      \dotfill ~\={A}zar 21, 1393  \\
-%Project Deadline \dotfill ~Month Day \\
-Final Exam       \dotfill ~Dey 18, 1393  \\
+Midterm \#1  \dotfill   \\
+Midterm \#2  \dotfill        \\
+Final Exam   \dotfill             \\
 \end{flushleft}
 \end{minipage}
 \end{center}
-\vskip.15in
-\noindent\textbf{Course Policy:}  
-\begin{itemize}
-\item Please sign up for AeLP. I will confirm your enrollment for the course, then you will be able to see the course page.
-\end{itemize}
-\vskip.15in
-\noindent\textbf{Class Policy:}  
-\begin{itemize}
-\item Regular attendance is essential and expected.
-\end{itemize}
-\vskip.15in
-\noindent\textbf{Academic Honesty:}   Lack of knowledge of the academic honesty policy is not a reasonable explanation for a violation.
-%%%%%% THE END 
+
+% ============================================================
+\sectionheading{Course Policies}
+% ============================================================
+
 \end{document}
